@@ -42,7 +42,7 @@ A
   - F
     - G
 
-When I open A->B->D->C  then click D in B ， C would be delete,
+![demo](./images/demo.gif)
 
 
 
