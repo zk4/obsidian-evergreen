@@ -1,6 +1,6 @@
 # Obsidian "EverGreen" Plugin
 
-![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fscambier.xyz%2Fobsidian-endpoints%2Fno-dupe-leaves.json)
+
 
 [EverGreen](https://notes.andymatuschak.org/) workflow with stack tabs in Obsidian 
 
