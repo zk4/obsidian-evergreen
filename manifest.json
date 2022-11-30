@@ -1,7 +1,7 @@
 {
 	"id": "evergreen",
 	"name": "evergreen",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"minAppVersion": "1.0.0",
 	"description": "evergreen workflow in stack tabs mode",
 	"author": "zk",

@@ -1,6 +1,6 @@
 {
   "name": "evergreen",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "EverGreen workflow with stack tabs in Obsidian",
   "main": "dist/main.js",
   "scripts": {
