@@ -13,14 +13,8 @@
 
 
 ## Install
-
-``` bash
-yarn 
-yarn build 
-mv dist evergreen
-```
-
-move the evergreen folder to your {vault}.obsidian/plugins
+go to release page.
+download the zip, and unzip to your {vault}.obsidian/plugins
 
 
 
