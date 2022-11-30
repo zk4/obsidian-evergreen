@@ -45,7 +45,7 @@ esbuild
       '@codemirror/view',
       ...builtins,
     ],
-    outfile: path.join('./evergreen/', 'main.js'),
+    outfile: path.join('./dist/', 'main.js'),
     plugins: [
       copy({
         // this is equal to process.cwd(), which means we use cwd path as base path to resolve `to` path

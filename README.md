@@ -10,6 +10,20 @@
 
 \>= 1.0.0
 
+
+
+## Install
+
+``` bash
+yarn 
+yarn build 
+mv dist evergreen
+```
+
+move the evergreen folder to your {vault}.obsidian/plugins
+
+
+
 ## How to use
 
 1. install this plugin 
