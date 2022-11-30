@@ -26,7 +26,7 @@
 
    
 
-3 Keep only leaf to parent full tab history from link hierarchy, otherwise tab would be deleted.
+3 Keep only leaf to parent full tab history from link hierarchy, otherwise tab would be deleted;
 
 
 
