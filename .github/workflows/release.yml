@@ -7,7 +7,7 @@ on:
 
 env:
   PLUGIN_NAME: evergreen
-  DIST_FOLDER: ./evergreen
+  DIST_FOLDER: ./dist
 
 jobs:
   build:
