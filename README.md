@@ -25,18 +25,11 @@ download the zip, and unzip to your {vault}.obsidian/plugins
 
 ## Feature
 
-1 Open internal link in stacked tab;
-
+1 Open internal link in new tab;
 
 2 Reuse already opened tab if possible;
 
-   
-
-   
-
 3 Keep only leaf to parent full tab history from link hierarchy, otherwise tab would be deleted;
-
-
 
 Ex: Suppose you have these files in link:
 
