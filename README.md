@@ -21,7 +21,7 @@ download the zip, and unzip to your {vault}.obsidian/plugins
 ## How to use
 
 1. install this plugin 
-2. enable `Stack tabs`
+2. (optional) enable `Stack tabs` would be more like andy's evergreen note workflow. Suits yourself.
 
 ## Feature
 
