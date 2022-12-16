@@ -5,7 +5,7 @@ import {around} from 'monkey-around'
 let uninstallPatchOpen: () => void
 
 // safely handles circular references
-export default class NoDupeLeavesPlugin extends Plugin {
+export default class EverGreenPlugin extends Plugin {
   async onload(): Promise<void> {
     uninstallPatchOpen = around(Workspace.prototype, {
 
@@ -27,6 +27,7 @@ export default class NoDupeLeavesPlugin extends Plugin {
           for (let i = 0; i < tabs.length; i++) {
             let leaf = tabs[i]
             const viewState = leaf.getViewState()
+            console.log(viewState.type)
             if (viewState.type === 'markdown') {
               // Found a corresponding pane
               if (viewState.state?.file?.endsWith(name)) {
