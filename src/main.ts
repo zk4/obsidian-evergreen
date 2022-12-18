@@ -4,12 +4,9 @@ import {around} from 'monkey-around'
 
 let uninstallPatchOpen: () => void
 
-// safely handles circular references
 export default class EverGreenPlugin extends Plugin {
   async onload(): Promise<void> {
     uninstallPatchOpen = around(Workspace.prototype, {
-
-
       // Monkey-patch the OpenLinkText function
       openLinkText(oldOpenLinkText) {
         return function (
