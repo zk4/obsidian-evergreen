@@ -20,23 +20,16 @@ download the zip, and unzip to your {vault}.obsidian/plugins
 
 ## How to use
 
-1. install this plugin 
-2. enable `Stack tabs`
+1. enable this plugin 
+2. (optional) enable `Stack tabs` would be more like andy's evergreen note workflow. Suits yourself.
 
 ## Feature
 
-1 Open internal link in stacked tab;
-
+1 Open internal link in new tab;
 
 2 Reuse already opened tab if possible;
 
-   
-
-   
-
 3 Keep only leaf to parent full tab history from link hierarchy, otherwise tab would be deleted;
-
-
 
 Ex: Suppose you have these files in link:
 
