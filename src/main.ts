@@ -39,7 +39,7 @@ export default class EverGreenPlugin extends Plugin {
           }
 
           // close all remaining tabs from dirtyIndex if hierarchy line changes
-          if (tabs.length > dirtyIndex && !found) {
+          if (!found) {
             for (let i = dirtyIndex + 1; i < tabs.length; i++) {
               tabs[i].detach()
             }
