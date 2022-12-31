@@ -15,6 +15,7 @@ export default class EverGreenPlugin extends Plugin {
           newLeaf?: boolean,
           openViewState?: OpenViewState,
         ) {
+          // console.log("trigger")
           // Make sure that the path ends with '.md'
           const name = linktext + (linktext.endsWith('.md') ? '' : '.md')
           let result
@@ -24,13 +25,13 @@ export default class EverGreenPlugin extends Plugin {
           for (let i = 0; i < tabs.length; i++) {
             let leaf = tabs[i]
             const viewState = leaf.getViewState()
-            console.log(viewState.type)
+            // console.log(viewState.type)
             if (viewState.type === 'markdown') {
               // Found a corresponding pane
-              if (viewState.state?.file?.endsWith(name)) {
-                found = true
-                app.workspace.setActiveLeaf(leaf)
-              }
+              // if (viewState.state?.file?.endsWith(name)) {
+                // found = true
+                // app.workspace.setActiveLeaf(leaf)
+              // }
               // found current dirt index
               if (viewState.state?.file?.endsWith(sourcePath)) {
                 dirtyIndex = i
