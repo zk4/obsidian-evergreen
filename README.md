@@ -27,7 +27,7 @@ download the zip, and unzip to your {vault}.obsidian/plugins
 
 1 Open internal link in new tab;
 
-2 ~~Reuse already opened tab if possible;~~  Follow the oepn stack
+2 ~~Reuse already opened tab if possible;~~  Tabs follow the open stack;
 
 3 Keep only leaf to parent full tab history from link hierarchy, otherwise tab would be deleted;
 
