@@ -18,22 +18,23 @@ export default class EverGreenPlugin extends Plugin {
           // Make sure that the path ends with '.md'
           const name = linktext + (linktext.endsWith('.md') ? '' : '.md')
           let result
-          let dirtyIndex = -1
+          let dirtyIndex = 0
           const tabs = app.workspace.getLeavesOfType('markdown')
           let found = tabs.length == 0
+          console.log("trigger",tabs.length)
           for (let i = 0; i < tabs.length; i++) {
             let leaf = tabs[i]
             const viewState = leaf.getViewState()
             // console.log(viewState.type)
             if (viewState.type === 'markdown') {
+              // found a corresponding pane
+              if (viewState.state?.file?.endsWith(name)) {
+                found = true
+                app.workspace.setActiveLeaf(leaf)
+              }
               // found current dirt index
               if (viewState.state?.file?.endsWith(sourcePath)) {
                 dirtyIndex = i
-              }
-              // found a corresponding pane
-              if (dirtyIndex>=0 && viewState.state?.file?.endsWith(name)) {
-                found = true
-                app.workspace.setActiveLeaf(leaf)
               }
             }
           }
