@@ -4,6 +4,14 @@ import {around} from 'monkey-around'
 
 let uninstallPatchOpen: () => void
 
+function lastNameOfArray(str:any){
+  if(str!=null){
+      let ary= str.split("/")
+      return ary[ary.length-1]
+  }
+  return null;
+}
+
 export default class EverGreenPlugin extends Plugin {
   async onload(): Promise<void> {
     uninstallPatchOpen = around(Workspace.prototype, {
@@ -28,12 +36,15 @@ export default class EverGreenPlugin extends Plugin {
             // console.log(viewState.type)
             if (viewState.type === 'markdown') {
               // found a corresponding pane
-              if (viewState.state?.file?.endsWith(name)) {
+              console.log(viewState.state?.file,name)
+              
+              // debugger
+              if (lastNameOfArray(viewState.state?.file)===lastNameOfArray(name)) {
                 found = true
                 app.workspace.setActiveLeaf(leaf)
               }
               // found current dirt index
-              if (viewState.state?.file?.endsWith(sourcePath)) {
+              if (lastNameOfArray(viewState.state?.file)===lastNameOfArray(sourcePath)) {
                 dirtyIndex = i
               }
             }
