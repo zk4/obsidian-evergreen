@@ -26,7 +26,7 @@ export default class EverGreenPlugin extends Plugin {
           // Make sure that the path ends with '.md'
           const name = linktext + (linktext.endsWith('.md') ? '' : '.md')
           let result
-          let dirtyIndex = 0
+          let dirtyIndex = -1
           const tabs = app.workspace.getLeavesOfType('markdown')
           let found = tabs.length == 0
           console.log("trigger",tabs.length)
@@ -51,7 +51,8 @@ export default class EverGreenPlugin extends Plugin {
           }
 
           // close all remaining tabs from dirtyIndex if hierarchy line changes
-          if (!found) {
+          // debugger
+          if (!found && dirtyIndex!==-1) {
             for (let i = dirtyIndex + 1; i < tabs.length; i++) {
               tabs[i].detach()
             }
