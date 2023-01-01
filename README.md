@@ -20,42 +20,22 @@ download the zip, and unzip to your {vault}.obsidian/plugins
 
 ## How to use
 
-1. enable this plugin 
-2. (optional) enable `Stack tabs` would be more like andy's evergreen note workflow. Suits yourself.
+1. Enable this plugin 
+
+2. (optional) Enable `Stack tabs` would be more like andy's evergreen note workflow. Suits yourself.
+
+   
+
+   >  Use 0.0.7 version to follow exactly [EverGreen](https://notes.andymatuschak.org/)'s workflow.
 
 ## Feature
 
-1 Open internal link in new tab;
+1. Open internal link in new tab in two cases, otherwise, it will reuse the opened tab.
 
-2 ~~Reuse already opened tab if possible;~~  Personally, I find this feature a little bit confusing, if you still want this feature, use 0.0.7 version.
-
-3 Tabs follow the open stack; 
-
-3 Keep only leaf to parent full tab history from link hierarchy, otherwise tab would be deleted;
-
-Ex: Suppose you have these files in link:
-
-A
-  - B
-    - C
-    - D
-      - H
-      - C
-    - E
-  - F
-    - G
-
-![demo](./images/demo.gif)
-
-
+	1. next tab is not exist.
+	1. the next tab is not the target file.
 
 
 
  
-
-plugin inspired by: [No Dupe Leaves](https://github.com/scambier/obsidian-no-dupe-leaves)
-
- 
-
-
 
