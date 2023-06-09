@@ -1,9 +1,12 @@
 # Obsidian "EverGreen" Plugin
 
+The goal:
+1. jump in the same note should be backable.
+2. jump in the other note should .
 
 
-[EverGreen](https://notes.andymatuschak.org/) workflow with stack tabs in Obsidian 
-
+A temporary solution:
+Always open link in new tab. Even it it the same page. 
 
 
 ## Support Obsidian version
@@ -28,14 +31,7 @@ download the zip, and unzip to your {vault}.obsidian/plugins
 
    >  Use 0.0.7 version to follow exactly [EverGreen](https://notes.andymatuschak.org/)'s workflow.
 
-## Feature
-
-1. Open internal link in new tab in two cases, otherwise, it will reuse the opened tab.
-
-	1. next tab is not exist.
-	1. the next tab is not the target file.
 
 
 
- 
-
+inspired by: https://github.com/scambier/obsidian-no-dupe-leaves

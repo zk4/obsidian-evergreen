@@ -1,81 +1,112 @@
-import {OpenViewState, Plugin, Workspace} from 'obsidian'
+import {OpenViewState, setActiveLeaf, Plugin, Workspace, WorkspaceLeaf} from 'obsidian'
 import {around} from 'monkey-around'
 
 
 let uninstallPatchOpen: () => void
-
-function lastNameOfArray(str:any){
-  if(str!=null){
-      let ary= str.split("/")
-      return ary[ary.length-1]
-  }
-  return null;
-}
+// let uninstallPatchOpen2: () => void
 
 export default class EverGreenPlugin extends Plugin {
-  async onload(): Promise<void> {
-    uninstallPatchOpen = around(Workspace.prototype, {
-      // Monkey-patch the OpenLinkText function
-      openLinkText(oldOpenLinkText) {
-        return function (
-          linktext: string,
-          sourcePath: string,
-          newLeaf?: boolean,
-          openViewState?: OpenViewState,
-        ) {
-          // Make sure that the path ends with '.md'
-          const name = linktext + (linktext.endsWith('.md') ? '' : '.md')
-          let result
-          let dirtyIndex = -1
-          const tabs = app.workspace.getLeavesOfType('markdown')
-          let found = tabs.length == 0
-          // console.log("trigger",tabs.length)
-          for (let i = 0; i < tabs.length; i++) {
-            let leaf = tabs[i]
-            const viewState = leaf.getViewState()
-            // console.log(viewState.type)
-            if (viewState.type === 'markdown') {
-              // found a corresponding pane
-              // console.log(viewState.state?.file,name,sourcePath)
-              
-              // debugger
-              if (lastNameOfArray(viewState.state?.file)===lastNameOfArray(name)) {
-                found = true
-                app.workspace.setActiveLeaf(leaf)
-              }
-              // found current dirt index
-              if (lastNameOfArray(viewState.state?.file)===lastNameOfArray(sourcePath)) {
-                dirtyIndex = i
-              }
-            }
-          }
+	async onload(): Promise<void> {
+		uninstallPatchOpen = around(Workspace.prototype, {
+			// Monkey-patch the OpenLinkText function
+			openLinkText(oldOpenLinkText) {
+				return function (
+					linktext: string,
+					sourcePath: string,
+					newLeaf?: boolean,
+					openViewState?: OpenViewState,
+				) {
+					const fileName = linktext.split("#")?.[0];
+					// Detect if we're clicking on a link within the same file. This can happen two ways:
+					// [[LinkDemo#Header 1]] or [[#Header 1]]
+					const isSameFile = fileName === "" || `${fileName}.md` === sourcePath;
+					console.log("isSameFile", isSameFile)
+					// console.log("linktext:", linktext, "sourcePath:", sourcePath, "newLeaf:", newLeaf, "openViewState:", openViewState)
 
-          // close all remaining tabs from dirtyIndex if hierarchy line changes
-          // debugger
-          // console.log(found,dirtyIndex)
-          // if (!found && dirtyIndex!==-1) {
-          //   for (let i = dirtyIndex + 1; i < tabs.length; i++) {
-          //     tabs[i].detach()
-          //   }
-          // }
+					const args = [
+							linktext,
+							sourcePath,
+							!isSameFile,
+							openViewState
+							// {
+							//     ...openViewState,
+							//     "state": {
+							//         "type": "markdown",
+							//         "state": {
+							//             "file": "Fleeting Notes/10.it/0.计算机语言/python/python 工程最佳实践.md",
+							//             "mode": "source",
+							//             "backlinks": true,
+							//             "source": true
+							//         }
+							//     },
+							//     "eState": {
+							//         "cursor": {
+							//             "from": {
+							//                 "line": 0,
+							//                 "ch": 0
+							//             },
+							//             "to": {
+							//                 "line": 0,
+							//                 "ch": 0
+							//             }
+							//         },
+							//         "scroll": 294.7675070028011
+							//     }
+                            //
+                            //
+							// },
+						]
+					return  oldOpenLinkText.apply(this, args)
+				}
+			},
+		});
+		//
+		//     [
+		//     {
+		//         "title": "python 工程最佳实践",
+		//         "icon": "lucide-file",
+		//         "state": {
+		//             "type": "markdown",
+		//             "state": {
+		//                 "file": "Fleeting Notes/10.it/0.计算机语言/python/python 工程最佳实践.md",
+		//                 "mode": "source",
+		//                 "backlinks": true,
+		//                 "source": false
+		//             }
+		//         },
+		//         "eState": {
+		//             "cursor": {
+		//                 "from": {
+		//                     "line": 0,
+		//                     "ch": 0
+		//                 },
+		//                 "to": {
+		//                     "line": 0,
+		//                     "ch": 0
+		//                 }
+		//             },
+		//             "scroll": 294.7675070028011
+		//         }
+		//     }
+		// ]
+		// uninstallPatchOpen2 = around(Workspace.prototype, {
+		//     // Monkey-patch the OpenLinkText function
+		//     setActiveLeaf(oldSetActiveLeaf) {
+		//         return function (
+		//             leaf: WorkspaceLeaf, pushHistory: boolean, focus: boolean
+		//         ) {
+		//             console.log(leaf, pushHistory, focus)
+		//             oldSetActiveLeaf.apply(this, [
+		//                 leaf, pushHistory, focus
+		//             ])
+		//         }
+		//     },
+		// })
+	}
 
-          // If no pane matches the path, call the original function
-          let ifNewTab = !found
-          result =
-            oldOpenLinkText &&
-            oldOpenLinkText.apply(this, [
-              linktext,
-              sourcePath,
-              ifNewTab,
-              openViewState,
-            ])
-          return result
-        }
-      },
-    })
-  }
-
-  onunload(): void {
-    uninstallPatchOpen()
-  }
+	onunload(): void {
+		uninstallPatchOpen()
+		// uninstallPatchOpen2()
+	}
 }
+
