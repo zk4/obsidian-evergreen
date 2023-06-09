@@ -29,14 +29,14 @@ export default class EverGreenPlugin extends Plugin {
           let dirtyIndex = -1
           const tabs = app.workspace.getLeavesOfType('markdown')
           let found = tabs.length == 0
-          console.log("trigger",tabs.length)
+          // console.log("trigger",tabs.length)
           for (let i = 0; i < tabs.length; i++) {
             let leaf = tabs[i]
             const viewState = leaf.getViewState()
             // console.log(viewState.type)
             if (viewState.type === 'markdown') {
               // found a corresponding pane
-              console.log(viewState.state?.file,name)
+              // console.log(viewState.state?.file,name,sourcePath)
               
               // debugger
               if (lastNameOfArray(viewState.state?.file)===lastNameOfArray(name)) {
@@ -52,11 +52,12 @@ export default class EverGreenPlugin extends Plugin {
 
           // close all remaining tabs from dirtyIndex if hierarchy line changes
           // debugger
-          if (!found && dirtyIndex!==-1) {
-            for (let i = dirtyIndex + 1; i < tabs.length; i++) {
-              tabs[i].detach()
-            }
-          }
+          // console.log(found,dirtyIndex)
+          // if (!found && dirtyIndex!==-1) {
+          //   for (let i = dirtyIndex + 1; i < tabs.length; i++) {
+          //     tabs[i].detach()
+          //   }
+          // }
 
           // If no pane matches the path, call the original function
           let ifNewTab = !found
